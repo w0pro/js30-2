@@ -3,13 +3,13 @@
 }
 
 body{
-  background-color: rgba(158, 161, 138, 0.767);
+  background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
   margin: 0;
   font-family: 'Ubuntu', sans-serif;
 }
 
 header{
-  background-color: rgb(172, 148, 132);
+  background-color: rgba(32, 34, 34, 0.8);
   padding: 16px;
   display: flex;
   justify-content: flex-end;
@@ -39,7 +39,7 @@ header{
 }
 
 .search::placeholder{
-  color: rgb(51, 53, 48); 
+  color: rgb(236, 240, 231); 
 }
 
 .search:focus{
@@ -57,7 +57,7 @@ main {
 .movie {
   width: 300px;
   margin: 1rem;
-  background-color: rgb(172, 148, 132);
+  background-color: rgb(39, 32, 27);
   box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
   position: relative;
   overflow: hidden;
@@ -72,14 +72,15 @@ main {
 .movie-info {
   color: #eee;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   padding: 0.5rem 1rem 1rem;
   letter-spacing: 0.5px;
 }
   
 .movie-info h3 {
-  margin-top: 0;
+  margin: 0;
+  
 }
   
 .movie-info span {
@@ -102,7 +103,7 @@ main {
 }
   
 .overview {
-  background-color: rgba(172, 148, 132, 0.7);
+  background-color: rgba(32, 34, 34, 0.8);
   padding: 2rem;
   position: absolute;
   left: 0;
@@ -113,6 +114,7 @@ main {
   border-radius: 50px;
   overflow-y: auto;
   transition: transform 0.5s ease-in;
+  color: white;
 }
   
 .movie:hover .overview {
@@ -120,7 +122,7 @@ main {
 }
 
 footer {
-  background-color: rgb(172, 148, 132);
+  background-color: rgba(32, 34, 34, 0.8);
   display: flex;
   justify-content: space-between;
   font-size: 26px;
@@ -131,11 +133,12 @@ footer {
   width: 30%;
   display: flex;
   align-items: baseline;
+  color: white;
 
 }
 .age a {
   text-decoration: none;
-  color: black;
+  color: white;
   cursor: pointer;
 }
 
