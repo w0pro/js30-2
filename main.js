@@ -1,5 +1,5 @@
 const url = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=b999f510ed5e490b9548a9c28124ed92';
-
+const button = document.getElementById('search').focus();
   
 async function getData(url) {
     const res = await fetch(url);
@@ -58,12 +58,13 @@ async function getData(url) {
       event.preventDefault();
       const urlTwo = `https://api.themoviedb.org/3/search/movie?query=${val.value}&api_key=b999f510ed5e490b9548a9c28124ed92`;
       console.log(urlTwo);
-      getData(urlTwo)
+      getData(urlTwo);
       
     }
   });
   
-    
+  
+
 
   
 

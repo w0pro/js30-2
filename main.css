@@ -15,6 +15,12 @@ header{
   display: flex;
   justify-content: flex-end;
 }
+.close {
+  position:absolute;
+  padding:0 5px;
+  right: 3%;
+  top: 5.5%;
+  }
 .search{
     background-color: transparent;
     border-radius: 60px;
@@ -23,7 +29,7 @@ header{
     font-size: 20px;
     color: white;
     width: 50%;
-    transition: .3s linear;
+    transition: 1s linear;
     
 }
 .search::placeholder{
@@ -90,7 +96,7 @@ main {
   }
   
   .overview {
-    background-color: rgb(172, 148, 132);
+    background-color: rgba(172, 148, 132, 0.7);
     padding: 2rem;
     position: absolute;
     left: 0;
@@ -100,7 +106,7 @@ main {
     transform: translateX(101%);
     border-radius: 50px;
     overflow-y: auto;
-    transition: transform 0.3s ease-in;
+    transition: transform 0.5s ease-in;
   }
   
   .movie:hover .overview {
