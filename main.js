@@ -48,6 +48,7 @@ async function getData(url) {
     }
     )
   };
+
  
   const val = document.getElementById('search');
 
@@ -56,10 +57,9 @@ async function getData(url) {
     if(event.key === 'Enter') {
       event.preventDefault();
       const urlTwo = `https://api.themoviedb.org/3/search/movie?query=${val.value}&api_key=b999f510ed5e490b9548a9c28124ed92`;
-
       console.log(urlTwo);
-
       getData(urlTwo)
+      
     }
   });
   
