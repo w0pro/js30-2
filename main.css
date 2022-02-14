@@ -85,7 +85,7 @@ main {
   }
   
   .overview {
-    background-color: #fff;
+    background-color: rgb(172, 148, 132);
     padding: 2rem;
     position: absolute;
     left: 0;
