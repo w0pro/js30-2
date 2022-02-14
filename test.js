@@ -1,18 +1,20 @@
 const url = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=b999f510ed5e490b9548a9c28124ed92';
 
-async function getData() {
+  
+async function getData(url) {
     const res = await fetch(url);
     const data = await res.json();
     console.log(data);
    showData(data);
   };
-  getData();
+  getData(url);
 
 
   const main = document.querySelector('#main');
 
 
   function showData(data) {
+    main.innerHTML = '';
     data.results.map(el => {
       let div = document.createElement('div');
       main.appendChild(div);
@@ -47,8 +49,16 @@ async function getData() {
     )
   };
  
+  const val = document.getElementById('search');
+
+  val.addEventListener('click', (e) => {
+    const urlTwo = `https://api.themoviedb.org/3/search/movie?query=${val.value}&api_key=b999f510ed5e490b9548a9c28124ed92`;
+    console.log(urlTwo);
+    getData(urlTwo);
+  });
   
 
+  
 
 
 
