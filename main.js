@@ -1,4 +1,5 @@
-const url = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=b999f510ed5e490b9548a9c28124ed92';
+const url = 'https://api.themoviedb.org/3/';
+const key = '&api_key=b999f510ed5e490b9548a9c28124ed92'
 const button = document.getElementById('search').focus();
   
 async function getData(url) {
@@ -7,13 +8,16 @@ async function getData(url) {
     console.log(data);
    showData(data);
   };
-  getData(url);
+  getData(url + 'discover/movie?sort_by=popularity.desc' + key);
 
 
   const main = document.querySelector('#main');
 
 
   function showData(data) {
+    if(data.results == 0){
+      alert('Ничего не найдено!\nПовторите запрос!');
+    };
     main.innerHTML = '';
     data.results.map(el => {
       let div = document.createElement('div');
@@ -35,7 +39,14 @@ async function getData(url) {
       divTwo.appendChild(hOne);
 
       const span = document.createElement('span');
-      span.textContent = el.vote_average
+      span.textContent = el.vote_average;
+      if(el.vote_average > 7){
+      span.classList.add('green');
+      }else if(el.vote_average > 5){
+      span.classList.add('orange');
+      }else{
+      span.classList.add('red');
+      }
       divTwo.appendChild(span);
 
       const divThree = document.createElement('div');
@@ -56,14 +67,11 @@ async function getData(url) {
   val.addEventListener('keydown', function(event) {
     if(event.key === 'Enter') {
       event.preventDefault();
-      const urlTwo = `https://api.themoviedb.org/3/search/movie?query=${val.value}&api_key=b999f510ed5e490b9548a9c28124ed92`;
-      console.log(urlTwo);
-      getData(urlTwo);
-      
+      getData(`${url}search/movie?query=${val.value}${key}`);
     }
   });
   
-  
+
 
 
   
