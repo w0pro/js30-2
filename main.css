@@ -1,175 +1,98 @@
-*{
-  box-sizing: border-box;
-}
+const url = 'https://api.themoviedb.org/3/';
+const key = '&api_key=b999f510ed5e490b9548a9c28124ed92'
+const button = document.getElementById('search').focus();
+  
+async function getData(url) {
+  const res = await fetch(url);
+  const data = await res.json();
+  console.log(data);
+  showData(data);
+  addColor (data)
+  
+  };
+  getData(url + 'discover/movie?sort_by=popularity.desc' + key);
 
-body{
-  background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
-  margin: 0;
-  font-family: 'Ubuntu', sans-serif;
-}
 
-header{
-  background-color: rgba(32, 34, 34, 0.8);
-  padding: 16px;
-  display: flex;
-  justify-content: flex-end;
-}
+  const main = document.querySelector('#main');
 
-#form {
-  display: flex;
-  justify-content: flex-end;
-}
 
-.close {
-  position:absolute;
-  padding:0 5px;
-  right: 25px;
-  top: 30px;
+  function showData(data) {
+    if(data.results.length === 0){
+      alert('Ничего не найдено!\nПовторите запрос!');
+    return;
+    };
+    main.innerHTML = '';
+    data.results.map(el => {
+      let div = document.createElement('div');
+      main.appendChild(div);
+      div.classList.add('movie');
+
+      const img = document.createElement('img');
+      img.classList.add('image');
+      img.src = `https://image.tmdb.org/t/p/w1280` + el.poster_path
+      img.alt = el.title
+      div.appendChild(img); 
+
+      const divTwo = document.createElement('div');
+      divTwo.classList.add('movie-info');
+      div.appendChild(divTwo);
+
+      const hOne = document.createElement('h3');
+      hOne.textContent = el.title
+      divTwo.appendChild(hOne);
+
+      const span = document.createElement('span');
+      span.textContent = el.vote_average;
+      const color = addColor(el.vote_average);
+      span.classList.add(color);
+      divTwo.appendChild(span);
+
+      const divThree = document.createElement('div');
+      divThree.classList.add('overview');
+      div.appendChild(divThree);
+
+      const hTwo = document.createElement('h3');
+      hTwo.textContent = el.overview
+      divThree.appendChild(hTwo);
+    }
+    )
+    
+  };
+
+ 
+const val = document.getElementById('search');
+
+
+val.addEventListener('keydown', function(event) {
+    if(event.key === 'Enter') {
+      event.preventDefault();
+      getData(`${url}search/movie?query=${val.value}${key}`);
+    }
+  });
+
+function addColor (voteAverage) {
+  
+  if(voteAverage > 7) {
+    return 'green'
   }
 
-.search{
-  background-color: transparent;
-  border-radius: 60px;
-  border: 2px solid rgb(73, 94, 76);
-  padding: 10px 20px;
-  font-size: 20px;
-  color: white;
-  width: 50%;
-  transition: 1s linear;
-}
+  if(voteAverage > 5) {
+    return'orange';
+  }
 
-.search::placeholder{
-  color: rgb(236, 240, 231); 
-}
+  return'red';
+};
+  
 
-.search:focus{
-  background-color: rgba(189, 214, 26, 0.767);
-  outline: none;
-  width: 100%; 
-}
 
-main {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
   
-.movie {
-  width: 300px;
-  margin: 1rem;
-  background-color: rgb(39, 32, 27);
-  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
-  position: relative;
-  overflow: hidden;
-  border-radius: 50px;
-}
-  
-.image{
-  width: 100%;
-  border-radius: 50px;
-}
 
-.movie-info {
-  color: #eee;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  padding: 0.5rem 1rem 1rem;
-  letter-spacing: 0.5px;
-}
-  
-.movie-info h3 {
-  margin: 0;
-  
-}
-  
-.movie-info span {
-  background-color: var(--primary-color);
-  padding: 0.25rem 0.5rem;
-  border-radius: 3px;
-  font-weight: bold;
-}
-  
-.green {
-  color: lightgreen;
-}
-  
-.orange {
-  color: orange;
-}
-  
-.red {
-  color: red;
-}
-  
-.overview {
-  background-color: rgba(32, 34, 34, 0.8);
-  padding: 2rem;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  max-height: 100%;
-  transform: translateX(101%);
-  border-radius: 50px;
-  overflow-y: auto;
-  transition: transform 0.5s ease-in;
-  color: white;
-}
-  
-.movie:hover .overview {
-  transform: translateY(0);
-}
 
-footer {
-  background-color: rgba(32, 34, 34, 0.8);
-  display: flex;
-  justify-content: space-between;
-  font-size: 26px;
-}
 
-.age {
-  margin: 0 20px;
-  width: 30%;
-  display: flex;
-  align-items: baseline;
-  color: white;
 
-}
-.age a {
-  text-decoration: none;
-  color: white;
-  cursor: pointer;
-}
 
-.age a:hover {
-  color: gold;
-  transition: 0.3s;
-}
 
-.text {
-  padding: 0 20px;
-}
-  
-.link {
-  display: flex;
-  margin: 0 20px;
-  width: 30%;
-  justify-content: flex-end;
-  align-items: center;
-}
 
-.rss {
-  background-image: url(assets/svg/rss.svg);
-  width: 100px;
-  height: 50px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  cursor: pointer;
-}
 
-.rss:hover {
-  filter: invert(26%) sepia(15%) saturate(638%) hue-rotate(7deg) brightness(92%)
-  contrast(87%);
-  transition: 0.3s;
-}
+
+
