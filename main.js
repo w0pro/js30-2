@@ -19,6 +19,7 @@ async function getData(url) {
   function showData(data) {
     if(data.results == 0){
       alert('Ничего не найдено!\nПовторите запрос!');
+      return;
     };
     main.innerHTML = '';
     data.results.map(el => {
